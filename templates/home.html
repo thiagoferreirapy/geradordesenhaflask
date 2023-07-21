@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Gerador de Senhas</title>
+</head>
+<body>
+    <main>
+        <section>
+            <h1>GERADOR DE SENHAS FLASK</h1>
+            <div>
+                <p id="textarea" value = ''>{{ texto_senha }}</p>
+            </div>
+
+            
+            <div class="btns">
+                <form action="/gerar_senha">
+                    <div class="range">
+                        <h3>CARACTERES</h3>
+                        <input type="range" name="vol" id="vol" value="0" min="0" max="30"
+                        oninput="display.value=value" onchange="display.value=value">
+                        <input type="text" id="display" value="0" readonly>
+                    </div>
+                    
+                    <div class="container_checkbox">
+                        <label for="maiu" class="checado">
+                            <input type="checkbox" id="maiu" name="maiu" value="maiu">
+                            
+                            <h2>MAIÚSCULAS</h2>
+                        </label>
+                        
+                    </div>
+                    <div class="container_checkbox">
+                        <label for="min">
+                            <input type="checkbox"  id="min" name="min" value="min">
+                            <h2>MINÚSCULAS</h2>
+                        </label>
+                        
+                    </div>
+                    <div class="container_checkbox">
+                        <label for="num">
+                            <input type="checkbox" id="num" name="num" value="num">
+                            <h2>NÚMEROS</h2>
+                        </label>
+                        
+                    </div>
+                    <div class="container_checkbox">
+                        <label for="simb">
+                            <input type="checkbox" id="simb" name="simb" value="simb">
+                            <h2>SÍMBOLOS</h2>
+                        </label>
+                        
+                    </div>
+                    <button type="submit">GERAR SENHA</button>
+                    <form action="">
+                        <button class="copy" type="submit">COPIAR SENHA</button>
+                    </form>
+                </form>
+                
+            </div>
+            
+            
+
+        </section>
+    </main>
+</body>
+<script>
+    const btnCopy = document.querySelector('button.copy')
+    const textarea = document.querySelector('#textarea').innerHTML;
+    btnCopy.addEventListener('click',(e)=>{
+        e.preventDefault();
+        navigator.clipboard.writeText(textarea);
+        alert('Senha copiada para área de tranferência!! Pressione Ctrl + V em algum local para vizualiza-la! ')
+    })
+</script>
+</html>
